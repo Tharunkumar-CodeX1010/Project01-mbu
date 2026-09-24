@@ -1,0 +1,39 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+/next-env.d.ts
+
+# production
+/build
+
+# testing
+/coverage/
+
+# typescript
+*.tsbuildinfo
+
+# env files (never commit real secrets)
+.env
+.env.local
+.env.*
+
+# but the committed template is allowed
+!.env.example
+
+# prisma local artifacts
+/prisma/*.db
+/prisma/*.db-journal
+
+# logs
+*.log
+npm-debug.log*
+
+# os
+.DS_Store
+Thumbs.db
+
+# misc
+.prettierignore
