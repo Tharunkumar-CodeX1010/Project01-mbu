@@ -1,8 +1,10 @@
 import { Badge } from "@/components/ui";
 import { mediaFor, mediaStatusLabel } from "@/lib/media";
+import { annotationsFor } from "@/lib/annotations";
 
 export function EpisodeCard({ recipeSlug, cookMinutes }: { recipeSlug: string; cookMinutes: number }) {
   const media = mediaFor(recipeSlug, cookMinutes);
+  const annotations = annotationsFor(recipeSlug);
 
   return (
     <aside aria-label="Episode & imagery" className="border-edge bg-surface shadow-card overflow-hidden rounded-lg">
@@ -32,6 +34,14 @@ export function EpisodeCard({ recipeSlug, cookMinutes }: { recipeSlug: string; c
           Episode length estimate: {Math.round(media.durationSeconds / 60)} min
           (mock).
         </p>
+        {annotations.map((note) => (
+          <p key={note.label} className="border-edge mt-3 border-t pt-3 text-xs leading-relaxed">
+            <span className="text-accent font-semibold">
+              {note.label}
+            </span>
+            <span className="text-ink-soft mt-0.5 block">{note.body}</span>
+          </p>
+        ))}
       </div>
     </aside>
   );

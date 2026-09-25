@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { SearchBar } from "@/components/ui";
 import { RecipeCard } from "./recipe-card";
 import type { Recipe } from "@/config/recipes";
@@ -10,6 +11,8 @@ interface RecipesBrowserProps {
   recipes: Recipe[];
   regions: Array<{ slug: string; name: string }>;
   initialRegion?: string;
+  initialQuery?: string;
+  initialMode?: string;
 }
 
 const MODES: Array<{ id: RankMode | "none"; label: string }> = [
@@ -24,10 +27,30 @@ export function RecipesBrowser({
   recipes,
   regions,
   initialRegion,
+  initialQuery = "",
+  initialMode = "none",
 }: RecipesBrowserProps) {
-  const [query, setQuery] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
+  const [query, setQuery] = useState(initialQuery ?? "");
   const [regionSlug, setRegionSlug] = useState(initialRegion ?? "all");
-  const [mode, setMode] = useState<RankMode | "none">("none");
+  const [mode, setMode] = useState<RankMode | "none">(
+    MODES.some((option) => option.id === initialMode)
+      ? (initialMode as RankMode | "none")
+      : "none"
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const params = new URLSearchParams();
+      if (regionSlug !== "all") params.set("region", regionSlug);
+      if (query.trim().length > 0) params.set("q", query);
+      if (mode !== "none") params.set("order", mode);
+      const qs = params.toString();
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [regionSlug, query, mode, router, pathname]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();

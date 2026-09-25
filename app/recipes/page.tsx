@@ -8,7 +8,7 @@ import { REGIONS } from "@/config/regions";
 export const metadata: Metadata = { title: "Recipes" };
 
 interface RecipesPageProps {
-  searchParams: Promise<{ region?: string }>;
+  searchParams: Promise<{ region?: string; q?: string; order?: string }>;
 }
 
 export default async function RecipesPage({ searchParams }: RecipesPageProps) {
@@ -28,6 +28,8 @@ export default async function RecipesPage({ searchParams }: RecipesPageProps) {
           recipes={RECIPES}
           regions={REGIONS.map((r) => ({ slug: r.slug, name: r.name }))}
           initialRegion={region?.slug}
+          initialQuery={params.q}
+          initialMode={params.order}
         />
       </div>
     </main>
