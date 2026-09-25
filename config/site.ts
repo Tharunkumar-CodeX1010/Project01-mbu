@@ -23,4 +23,5 @@ export const primaryNav = [
 export const utilityNav = [
   { label: "Saved Dishes", href: "/saved" },
   { label: "Shopping List", href: "/shopping" },
+  { label: "Unit & Swap", href: "/tools" },
 ] as const;
