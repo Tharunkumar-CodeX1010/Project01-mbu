@@ -13,6 +13,7 @@ interface DrawerProps {
   title: string;
   description?: string;
   side?: Side;
+  id?: string;
   children: ReactNode;
   className?: string;
 }
@@ -23,6 +24,7 @@ export function Drawer({
   title,
   description,
   side = "right",
+  id,
   children,
   className,
 }: DrawerProps) {
@@ -49,6 +51,7 @@ export function Drawer({
       />
       <div
         ref={panelRef}
+        id={id}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
