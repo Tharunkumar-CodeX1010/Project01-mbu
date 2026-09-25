@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">Japan vein poster — Dashi</title>
+  <desc id="d">An indigo ceramic bowl of clear broth with steam on paper-soft canvas.</desc>
+  <defs>
+    <radialGradient id="bg" cx="0.5" cy="0.4" r="0.9">
+      <stop offset="0" stop-color="#FBF7EE"/>
+      <stop offset="1" stop-color="#E7E0D4"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#3E4A5B" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#3E4A5B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <ellipse cx="800" cy="680" rx="360" ry="58" fill="#33281F" opacity="0.12"/>
+
+  <path d="M480 540 a320 300 0 0 1 640 0 c-20 96 -90 150 -160 160 h-320 c-70 -10 -140 -64 -160 -160z" fill="#3E4A5B"/>
+  <path d="M500 540 a300 280 0 0 1 600 0 c-14 76 -84 128 -148 138 h-304 c-64 -10 -134 -62 -148 -138z" fill="#2E3644"/>
+
+  <ellipse cx="800" cy="560" rx="270" ry="74" fill="#F5C860"/>
+  <ellipse cx="800" cy="550" rx="210" ry="52" fill="#F2B94B"/>
+
+  <path d="M600 470 h180 l-16 26 z" fill="#4C5A2F"/>
+  <path d="M560 470 h40 v150 c0 22 -12 30 -20 30 s-20 -8 -20 -30z" fill="#5C7A3E"/>
+
+  <path d="M905 500 c-16 0 -26 22 -18 40 c6 14 30 14 36 0 c8 -18 -2 -40 -18 -40z" fill="#C9865B"/>
+
+  <g stroke="#A99E8A" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.7">
+    <path d="M790 330 q16 -22 0 -44 q-16 -22 0 -44"/>
+    <path d="M860 340 q12 -18 0 -36 q-12 -18 0 -36"/>
+  </g>
+
+  <g fill="#8A9A6A" opacity="0.5">
+    <circle cx="240" cy="200" r="9"/><circle cx="300" cy="240" r="6"/>
+    <circle cx="1360" cy="180" r="8"/><circle cx="1300" cy="240" r="5"/>
+  </g>
+</svg>

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BackButton } from "@/components/navigation/back-button";
 import { Button } from "@/components/ui";
-import { PageIntro } from "@/components/shared/page-intro";
-import { Reveal } from "@/components/motion/reveal";
 import { RegionAtlas } from "@/components/region/region-atlas";
+import { PosterImage } from "@/components/media/poster-image";
 import { getRegion, getVein, REGIONS } from "@/config/regions";
+import { posterForRegion } from "@/lib/poster";
 
 interface RegionPageProps {
   params: Promise<{ slug: string }>;
@@ -41,41 +41,53 @@ export default async function RegionPage({ params }: RegionPageProps) {
   return (
     <main className="mx-auto w-full max-w-[var(--container-max)] flex-1 px-4 py-10 sm:px-6">
       <BackButton fallbackHref="/explore" />
-      <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
-        <div>
-          <PageIntro
-            overline={`${vein.name} · ${region.country}`}
-            title={region.name}
-            description={region.description}
-          />
+
+      <div className="relative mb-10 aspect-[21/8] w-full overflow-hidden rounded-2xl border border-edge shadow-card">
+        <PosterImage
+          src={posterForRegion(region.slug)}
+          alt={`Poster of ${region.name}`}
+          priority
+        />
+        <div className="from-canvas/92 absolute inset-0 bg-gradient-to-b to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 mx-auto max-w-[var(--container-max)] px-6 pb-8 sm:px-6">
+          <p className="text-accent text-xs font-medium uppercase tracking-[0.25em]">
+            {vein.name} · {region.country}
+          </p>
+          <h1 className="text-ink mt-1 text-3xl font-bold tracking-tight sm:text-4xl">
+            {region.name}
+          </h1>
+          <p className="text-ink-soft mt-2 max-w-xl text-sm leading-relaxed sm:text-base">
+            {region.description}
+          </p>
           <p className="text-accent mt-2 text-sm font-semibold">
             TAC Archetype · {vein.archetype}
           </p>
-          <div className="mt-8 space-y-6">
+        </div>
+      </div>
+
+      <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr]">
+        <div>
+          <div className="space-y-5">
             {acts.map((act, index) => (
-              <Reveal key={act.label} delay={index * 0.05}>
-                <div className="border-edge bg-surface rounded-lg p-5">
-                  <p className="text-ink-faint text-xs font-medium uppercase tracking-[0.25em]">
-                    Act {String(index + 1)} · {act.label}
-                  </p>
-                  <p className="text-ink-soft mt-2 text-sm leading-relaxed">
-                    {act.body}
-                  </p>
-                </div>
-              </Reveal>
+              <div key={act.label} className="border-edge bg-surface rounded-2xl p-6">
+                <p className="text-ink-faint text-xs font-medium uppercase tracking-[0.25em]">
+                  Act {String(index + 1)} · {act.label}
+                </p>
+                <p className="text-ink-soft mt-2 text-sm leading-relaxed">
+                  {act.body}
+                </p>
+              </div>
             ))}
           </div>
           <div className="mt-8">
-            <Reveal>
-              <Button href={`/recipes?region=${region.slug}`}>
-                {region.specialties.length} specialties from {region.name}
-              </Button>
-            </Reveal>
+            <Button href={`/recipes?region=${region.slug}`}>
+              {region.specialties.length} specialties from {region.name}
+            </Button>
           </div>
         </div>
-        <Reveal delay={0.1} className="lg:sticky lg:top-24 lg:self-start">
+        <div className="lg:sticky lg:top-24 lg:self-start">
           <RegionAtlas region={region} />
-        </Reveal>
+        </div>
       </div>
     </main>
   );

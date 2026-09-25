@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">Southeast Asia vein poster — Pad Thai</title>
+  <desc id="d">Swirling noodles with shrimp, lime and peanuts on banana-leaf green.</desc>
+  <defs>
+    <radialGradient id="bg" cx="0.5" cy="0.42" r="0.9">
+      <stop offset="0" stop-color="#F6FAEE"/>
+      <stop offset="1" stop-color="#CAD9A2"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0" stop-color="#3E6B2E" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#3E6B2E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <path d="M120 130 l180 -120 180 140 -160 130z" fill="#5C8A3C" opacity="0.18"/>
+  <path d="M1240 150 l60 -180 160 60 -40 170z" fill="#5C8A3C" opacity="0.16"/>
+
+  <ellipse cx="800" cy="640" rx="430" ry="64" fill="#33281F" opacity="0.12"/>
+
+  <path d="M820 330 a270 270 0 1 1 -270 270 a270 270 0 0 1 270 -270z" fill="none" stroke="#F6D9A0" stroke-width="70"/>
+  <path d="M820 330 a270 270 0 1 1 -270 270 a270 270 0 0 1 270 -270z" fill="none" stroke="#E8BD76" stroke-width="70" opacity="0.6" stroke-dasharray="120 70"/>
+  <path d="M880 260 a300 300 0 1 1 -220 520" fill="none" stroke="#F6D9A0" stroke-width="60" opacity="0.7" stroke-linecap="round"/>
+
+  <g fill="#E88A6B">
+    <path d="M1080 300 q76 54 62 128 q-88 24 -130 -60 q-22 -40 68 -68z" stroke="#C96A4C" stroke-width="8"/>
+    <circle cx="860" cy="220" r="34" fill="#E98F70" stroke="#C96A4C" stroke-width="7"/>
+    <path d="M640 560 q-40 50 -30 92 q60 16 74 -40 q6 -36 -44 -52z" fill="#EC9B7C" stroke="#D07656" stroke-width="6"/>
+  </g>
+
+  <path d="M1180 520 l78 -60 54 74 -72 66 z" fill="#D9E45A"/>
+  <path d="M1180 520 l78 -60 54 74" fill="none" stroke="#8A9A2A" stroke-width="8"/>
+
+  <g fill="#F2C84B">
+    <circle cx="560" cy="360" r="16"/><circle cx="620" cy="400" r="12"/>
+    <circle cx="700" cy="700" r="14"/><circle cx="600" cy="640" r="11"/>
+    <circle cx="1000" cy="640" r="12"/><circle cx="940" cy="700" r="10"/>
+  </g>
+  <g fill="#B53B16" opacity="0.5">
+    <circle cx="240" cy="210" r="10"/><circle cx="310" cy="250" r="6"/>
+  </g>
+</svg>

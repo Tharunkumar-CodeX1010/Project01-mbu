@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">Silk Road vein poster — Pide</title>
+  <desc id="d">A charred sesame-topped pide boat on warm parchment canvas.</desc>
+  <defs>
+    <radialGradient id="bg" cx="0.5" cy="0.42" r="0.9">
+      <stop offset="0" stop-color="#FFF7EC"/>
+      <stop offset="1" stop-color="#F0CFA2"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0" stop-color="#C97B2A" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#C97B2A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <ellipse cx="800" cy="650" rx="420" ry="60" fill="#33281F" opacity="0.11"/>
+
+  <path d="M470 610 a330 300 0 0 1 660 0 l-60 46 a270 240 0 0 0 -540 0 z" fill="#EAD6A8"/>
+  <path d="M470 610 a330 300 0 0 1 660 0 l-60 46 a270 240 0 0 0 -540 0 z" fill="#D9A45F" opacity="0.25"/>
+
+  <path d="M660 470 q-20 80 -20 120 q0 60 60 70 q-20 -40 -10 -90 q8 -36 30 -56 z" fill="#C74B1F"/>
+  <path d="M940 470 q20 80 20 120 q0 60 -60 70 q20 -40 10 -90 q-8 -36 -30 -56 z" fill="#C74B1F"/>
+
+  <g fill="#F6E9C8">
+    <path d="M760 380 q-12 160 10 280 q-30 -20 -34 -90 q-4 -80 24 -190z"/>
+    <path d="M840 380 q12 160 -10 280 q30 -20 34 -90 q4 -80 -24 -190z"/>
+  </g>
+
+  <g fill="#A9742F" opacity="0.85">
+    <circle cx="690" cy="330" r="10"/><circle cx="770" cy="300" r="9"/>
+    <circle cx="850" cy="310" r="9"/><circle cx="920" cy="340" r="8"/>
+    <circle cx="640" cy="390" r="7"/><circle cx="980" cy="400" r="7"/>
+  </g>
+
+  <g fill="#8A5A1E" opacity="0.5">
+    <path d="M710 620 q10 -18 4 -30 q-16 8 0 30z"/>
+  </g>
+
+  <g fill="#B53B16" opacity="0.45">
+    <circle cx="180" cy="210" r="9"/><circle cx="260" cy="250" r="6"/>
+    <circle cx="1400" cy="190" r="8"/><circle cx="1340" cy="250" r="5"/>
+  </g>
+</svg>

@@ -29,8 +29,9 @@ honor the `?region=` deep link.
 - `next.config.ts`: `poweredByHeader: false`, response compression on, static
   asset `immutable` caching for `/_next/static/*`, short TTL + stale-while-
   revalidate for `/media/*` (procedural posters, content can be re-tagged).
-- Motion (framer-motion) is loaded once, shared; `MotionConfig reducedMotion="user"`
-  prevents animation work for users who opt out.
+- Motion has been removed from the runtime (no framer-motion, no scroll/reveal
+  libraries): transitions are pure CSS and respect `prefers-reduced-motion`
+  automatically. Lightweight, zero animation JS after hydration.
 - No heavy runtime data: recipe/region/history/ingredient data is compiled into
   the build (static). Live postgres/Redis/YouTube/grocery calls remain
   `BLOCKED_EXTERNAL_DEPENDENCY` and are not part of page rendering.

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">Latin America vein poster — Al pastor</title>
+  <desc id="d">A glowing trompo of pineapple and chile with lime on warm canvas.</desc>
+  <defs>
+    <radialGradient id="bg" cx="0.5" cy="0.4" r="0.9">
+      <stop offset="0" stop-color="#FFF8EC"/>
+      <stop offset="1" stop-color="#F3D9A8"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0" stop-color="#D9542B" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#D9542B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <ellipse cx="800" cy="700" rx="330" ry="52" fill="#33281F" opacity="0.10"/>
+
+  <rect x="760" y="180" width="80" height="520" rx="40" fill="#E8A33C"/>
+  <rect x="760" y="180" width="80" height="520" rx="40" fill="#C74B1F" opacity="0.55"/>
+
+  <g fill="#B4C83F">
+    <path d="M620 260 a220 240 0 0 1 360 0 l-40 60 a180 200 0 0 0 -280 0 z"/>
+  </g>
+  <g fill="#E86A2E">
+    <path d="M600 280 a260 300 0 0 1 400 0 l-30 40 a230 260 0 0 0 -340 0 z"/>
+  </g>
+  <g fill="#D9542B">
+    <path d="M590 300 a300 360 0 0 1 420 0 l-22 26 a260 320 0 0 0 -376 0 z"/>
+  </g>
+
+  <g fill="#F4C84F" stroke="#E09A2F" stroke-width="10">
+    <circle cx="560" cy="470" r="70"/>
+    <circle cx="1040" cy="470" r="70"/>
+  </g>
+
+  <path d="M470 380 a120 120 0 0 1 10 -70 l150 30 a90 90 0 0 1 -20 80 z" fill="#B4C83F"/>
+  <path d="M1130 380 a120 120 0 0 0 -10 -70 l-150 30 a90 90 0 0 0 20 80 z" fill="#B4C83F"/>
+
+  <path d="M1240 640 l70 -58 58 70 -70 58 z" fill="#D9E45A"/>
+  <path d="M1240 640 l70 -58 58 70" fill="none" stroke="#8A9A2A" stroke-width="8"/>
+
+  <g fill="#B53B16" opacity="0.6">
+    <circle cx="180" cy="180" r="12"/><circle cx="260" cy="220" r="7"/>
+    <circle cx="1410" cy="160" r="10"/><circle cx="1340" cy="230" r="6"/>
+  </g>
+</svg>

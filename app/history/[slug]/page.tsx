@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Badge, Button } from "@/components/ui";
-import { Reveal } from "@/components/motion/reveal";
 import { BackButton } from "@/components/navigation/back-button";
 import { getFilm, HISTORY_FILMS } from "@/lib/history";
 import { getRegion } from "@/config/regions";
 import { getRecipe } from "@/config/recipes";
+import { posterForRegion } from "@/lib/poster";
+import { PosterImage } from "@/components/media/poster-image";
 
 interface HistoryFilmPageProps {
   params: Promise<{ slug: string }>;
@@ -34,13 +35,14 @@ export default async function HistoryFilmPage({ params }: HistoryFilmPageProps) 
     <main className="mx-auto w-full max-w-[var(--container-max)] flex-1 px-4 py-10 sm:px-6">
       <BackButton fallbackHref="/history" />
 
-      <div className="relative isolate overflow-hidden rounded-lg">
-        <div
-          role="img"
-          aria-label={`Poster of ${film.title}`}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${film.poster})` }}
-        />
+      <div className="relative isolate overflow-hidden rounded-2xl border border-edge shadow-card">
+        <div className="absolute inset-0">
+          <PosterImage
+            src={posterForRegion(film.regions[0])}
+            alt={`Poster of ${film.title}`}
+            priority
+          />
+        </div>
         <div className="from-canvas absolute inset-0 bg-gradient-to-t to-canvas/20" />
         <div className="relative z-10 max-w-2xl px-6 py-16 sm:px-10">
           <p className="text-accent text-xs font-medium uppercase tracking-[0.3em]">
@@ -65,39 +67,33 @@ export default async function HistoryFilmPage({ params }: HistoryFilmPageProps) 
       <div className="mt-10 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <section aria-label="Scenes">
-            <Reveal>
-              <h2 className="text-ink text-xl font-semibold tracking-tight">
-                Scenes
-              </h2>
-            </Reveal>
+            <h2 className="text-ink text-xl font-semibold tracking-tight">
+              Scenes
+            </h2>
             <ol className="mt-4 space-y-3">
               {film.scenes.map((scene) => (
-                <Reveal key={scene.scene} delay={scene.scene * 0.04}>
-                  <li className="border-edge bg-surface rounded-lg p-4">
-                    <div className="flex items-center justify-between">
-                      <p className="text-accent text-xs font-semibold uppercase tracking-[0.2em]">
-                        Scene {scene.scene}
-                      </p>
-                      <p className="text-ink-faint text-xs">{scene.minutes} min</p>
-                    </div>
-                    <h3 className="text-ink mt-1 text-base font-semibold">
-                      {scene.title}
-                    </h3>
-                    <p className="text-ink-soft mt-1 text-sm leading-relaxed">
-                      {scene.synopsis}
+                <li key={scene.scene} className="border-edge bg-surface rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-accent text-xs font-semibold uppercase tracking-[0.2em]">
+                      Scene {scene.scene}
                     </p>
-                  </li>
-                </Reveal>
+                    <p className="text-ink-faint text-xs">{scene.minutes} min</p>
+                  </div>
+                  <h3 className="text-ink mt-1 text-base font-semibold">
+                    {scene.title}
+                  </h3>
+                  <p className="text-ink-soft mt-1 text-sm leading-relaxed">
+                    {scene.synopsis}
+                  </p>
+                </li>
               ))}
             </ol>
           </section>
 
           <section aria-label="Timeline" className="mt-10">
-            <Reveal>
-              <h2 className="text-ink text-xl font-semibold tracking-tight">
-                Historical thread
-              </h2>
-            </Reveal>
+            <h2 className="text-ink text-xl font-semibold tracking-tight">
+              Historical thread
+            </h2>
             <ol className="mt-4 space-y-0">
               {film.timeline.map((point, index) => (
                 <li key={point.year} className="relative flex gap-4 pb-5 pl-6 last:pb-0">
@@ -119,21 +115,16 @@ export default async function HistoryFilmPage({ params }: HistoryFilmPageProps) 
           </section>
 
           <section aria-label="Provenance" className="mt-10">
-            <Reveal>
-              <h2 className="text-ink text-xl font-semibold tracking-tight">
-                Provenance
-              </h2>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <p className="text-ink-soft mt-3 border-l-2 border-green bg-elevated/60 rounded-r-lg p-4 text-sm leading-relaxed">
-                {film.provenance}
-              </p>
-            </Reveal>
+            <h2 className="text-ink text-xl font-semibold tracking-tight">
+              Provenance
+            </h2>
+            <p className="text-ink-soft mt-3 border-l-2 border-green bg-elevated/60 rounded-r-lg p-4 text-sm leading-relaxed">
+              {film.provenance}
+            </p>
           </section>
         </div>
 
-        <Reveal delay={0.1} className="lg:sticky lg:top-24 lg:self-start">
-          <aside aria-label="Connection map" className="border-edge bg-surface shadow-card rounded-lg p-5 space-y-5">
+        <aside aria-label="Connection map" className="border-edge bg-surface shadow-card lg:sticky lg:top-24 lg:self-start rounded-lg p-5 space-y-5">
             <div>
               <h2 className="text-ink text-sm font-semibold tracking-tight">
                 Feature regions
@@ -173,7 +164,6 @@ export default async function HistoryFilmPage({ params }: HistoryFilmPageProps) 
               </ul>
             </div>
           </aside>
-        </Reveal>
       </div>
     </main>
   );

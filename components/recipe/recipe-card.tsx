@@ -1,23 +1,32 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui";
-import { MotionCard } from "@/components/motion/motion-card";
 import { getRegion } from "@/config/regions";
 import type { Recipe } from "@/config/recipes";
+import { posterForRegion } from "@/lib/poster";
+import { PosterImage } from "@/components/media/poster-image";
 
 export function RecipeCard({ recipe }: { recipe: Recipe }) {
   const region = getRegion(recipe.regionSlug);
 
   return (
-    <MotionCard className="h-full">
-      <Link
-        href={`/recipes/${recipe.slug}`}
-        className="border-edge bg-surface shadow-glass group flex h-full flex-col rounded-lg p-5 transition-colors hover:bg-surface-strong"
-      >
-        <div className="flex items-center justify-between gap-3">
-          <Badge variant="outline">{region?.name ?? recipe.regionSlug}</Badge>
-          <span className="text-ink-faint text-xs">{recipe.timeMin} min</span>
-        </div>
-        <h3 className="text-ink mt-3 text-lg font-semibold tracking-tight">
+    <Link
+      href={`/recipes/${recipe.slug}`}
+      className="border-edge bg-surface shadow-card group flex h-full flex-col overflow-hidden rounded-xl transition-shadow hover:shadow-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    >
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
+        <PosterImage
+          src={posterForRegion(recipe.regionSlug)}
+          alt={`Masterclass poster for ${recipe.name}`}
+        />
+        <span className="bg-accent/90 text-accent-ink absolute left-3 top-3 rounded-full px-2.5 py-0.5 text-xs font-semibold">
+          {region?.name ?? recipe.regionSlug}
+        </span>
+        <span className="absolute right-3 top-3 rounded-full bg-elevated/90 px-2.5 py-0.5 text-xs font-medium text-ink-soft backdrop-blur-sm">
+          {recipe.timeMin} min
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="text-ink text-lg font-semibold tracking-tight">
           {recipe.name}
         </h3>
         <p className="text-ink-soft mt-2 flex-1 text-sm leading-relaxed">
@@ -35,7 +44,7 @@ export function RecipeCard({ recipe }: { recipe: Recipe }) {
             →
           </span>
         </div>
-      </Link>
-    </MotionCard>
+      </div>
+    </Link>
   );
 }

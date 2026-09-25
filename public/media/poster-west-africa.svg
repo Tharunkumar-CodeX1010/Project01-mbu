@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="t d">
+  <title id="t">West Africa vein poster — Jollof</title>
+  <desc id="d">A red-orange pot of jollof rice with plantain and steam.</desc>
+  <defs>
+    <radialGradient id="bg" cx="0.5" cy="0.42" r="0.9">
+      <stop offset="0" stop-color="#FFF5EA"/>
+      <stop offset="1" stop-color="#F0C9A8"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.55">
+      <stop offset="0" stop-color="#C74B1F" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#C74B1F" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <ellipse cx="800" cy="690" rx="400" ry="58" fill="#33281F" opacity="0.12"/>
+
+  <path d="M480 540 a320 300 0 0 1 640 0 l-34 130 a250 230 0 0 0 -572 0 z" fill="#33281F"/>
+  <path d="M490 530 a310 290 0 0 1 620 0 l-28 110 a240 220 0 0 0 -564 0 z" fill="#4A3A22"/>
+
+  <path d="M420 540 h760 l28 82 h-816 z" fill="#C40000"/>
+  <path d="M448 622 h704 l-30 58 h-644 z" fill="#9E0000"/>
+
+  <ellipse cx="800" cy="560" rx="290" ry="70" fill="#D34A24"/>
+  <g fill="#BC3812">
+    <circle cx="700" cy="560" r="58"/><circle cx="880" cy="550" r="52"/>
+    <circle cx="790" cy="590" r="42"/><circle cx="920" cy="585" r="36"/>
+  </g>
+
+  <g fill="#E86A2E" opacity="0.8">
+    <circle cx="640" cy="545" r="14"/><circle cx="760" cy="520" r="12"/>
+    <circle cx="900" cy="515" r="13"/><circle cx="960" cy="560" r="11"/>
+  </g>
+
+  <g fill="#F4C84F" stroke="#C9882F" stroke-width="6">
+    <path d="M520 470 q60 -40 96 -6 q-8 46 -58 52 q-46 4 -38 -46z"/>
+    <path d="M1080 470 q-60 -40 -96 -6 q8 46 58 52 q46 4 38 -46z"/>
+  </g>
+
+  <g stroke="#B3A25E" stroke-width="11" stroke-linecap="round" fill="none" opacity="0.85">
+    <path d="M770 330 q18 -26 0 -52 q-18 -26 0 -52"/>
+    <path d="M845 340 q14 -20 0 -40 q-14 -20 0 -40"/>
+  </g>
+
+  <g fill="#B53B16" opacity="0.45">
+    <circle cx="200" cy="200" r="10"/><circle cx="280" cy="240" r="6"/>
+    <circle cx="1390" cy="180" r="8"/><circle cx="1320" cy="230" r="5"/>
+  </g>
+</svg>

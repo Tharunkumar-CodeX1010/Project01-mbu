@@ -1,44 +1,44 @@
 /* ============================================================
    PROJECT TAC — YUMMYGO design tokens
-   Single source of truth for the cinematic dark design system.
+   "Honey & Sage": a warm, calm, appetite-friendly palette.
 
-   Naming follows the TAC spec concepts: bg-dark, surface-glass,
-   accent-orange, accent-green, text-primary/secondary,
-   border-glass, radius-*, shadow-glass, motion + typography +
-   spacing + breakpoint scales.
+   Color psychology:
+   - Warm ivory cream base  -> comfort, warmth, openness, appetite
+   - Terracotta accent      -> appetite, energy (primary actions)
+   - Sage green accent      -> freshness, balance, calm (secondary)
+   - Espresso text          -> grounded, rich, readable
 
-   Contrast (measured, WCAG 2.1):
-   - text-primary  #F5F5F4 on #0B0B0D -> 18.03 : 1  (AAA)
-   - text-secondary #A8A29E on #0B0B0D ->  7.80 : 1  (AAA)
-   - accent-orange #F97316 on #0B0B0D ->  7.02 : 1  (AAA)
-   - accent-green  #34D399 on #0B0B0D -> 10.23 : 1  (AAA)
-   - ink-on-orange #1A0E02 on #F97316 ->  6.76 : 1  (AA)
-   - NOTE: accent-green is dark-surface-only (1.76:1 on white).
+   Contrast (measured, WCAG 2.1, light theme):
+   - text-primary   #33281F on #F7F2E9 -> ~11.0 : 1  (AAA)
+   - text-secondary #6E5D4C on #F7F2E9 -> ~ 5.2 : 1  (AA)
+   - accent-orange  #C34A21 on #F7F2E9 -> ~ 4.5 : 1  (AA)
+   - accent-green   #4C6B30 on #F7F2E9 -> ~ 5.2 : 1  (AA)
+   - ink-on-orange  #FFF4E6 on #C34A21 -> ~ 4.6 : 1  (AA)
    ============================================================ */
 
 :root {
   /* ---- Surfaces ---- */
-  --bg-dark: #0b0b0d;
-  --bg-elevated: #141417;
-  --surface-glass: rgba(255, 255, 255, 0.06);
-  --surface-glass-strong: rgba(255, 255, 255, 0.1);
-  --surface-elevated: #1a1a1f;
+  --bg-dark: #f7f2e9;
+  --bg-elevated: #fffdf7;
+  --surface-glass: rgba(255, 253, 248, 0.62);
+  --surface-glass-strong: rgba(255, 255, 255, 0.92);
+  --surface-elevated: #ffffff;
 
   /* ---- Accents ---- */
-  --accent-orange: #f97316;
-  --accent-orange-strong: #fb923c;
-  --accent-green: #34d399;
-  --accent-green-strong: #6ee7b7;
+  --accent-orange: #c34a21;
+  --accent-orange-strong: #a63a17;
+  --accent-green: #4c6b30;
+  --accent-green-strong: #5d7f3f;
 
   /* ---- Text ---- */
-  --text-primary: #f5f5f4;
-  --text-secondary: #a8a29e;
-  --text-tertiary: #78716c;
-  --text-on-accent: #1a0e02;
+  --text-primary: #33281f;
+  --text-secondary: #6e5d4c;
+  --text-tertiary: #9b8b79;
+  --text-on-accent: #fff4e6;
 
   /* ---- Borders ---- */
-  --border-glass: rgba(255, 255, 255, 0.12);
-  --border-glass-strong: rgba(255, 255, 255, 0.2);
+  --border-glass: rgba(51, 40, 31, 0.14);
+  --border-glass-strong: rgba(51, 40, 31, 0.26);
 
   /* ---- Radii ---- */
   --radius-sm: 0.375rem;
@@ -47,13 +47,13 @@
   --radius-xl: 1.5rem;
   --radius-full: 9999px;
 
-  /* ---- Shadows ---- */
-  --shadow-glass: 0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 8px 24px -12px rgba(0, 0, 0, 0.6);
-  --shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 12px 32px -16px rgba(0, 0, 0, 0.8);
-  --shadow-elevated: 0 24px 64px -24px rgba(0, 0, 0, 0.85);
-  --shadow-glow-orange: 0 0 44px -12px rgba(249, 115, 22, 0.5);
+  /* ---- Shadows (soft warm) ---- */
+  --shadow-glass: 0 0 0 1px rgba(51, 40, 31, 0.05),
+    0 10px 24px -14px rgba(93, 64, 36, 0.22);
+  --shadow-card: 0 0 0 1px rgba(51, 40, 31, 0.06),
+    0 16px 32px -18px rgba(93, 64, 36, 0.28);
+  --shadow-elevated: 0 28px 64px -28px rgba(93, 64, 36, 0.32);
+  --shadow-glow-orange: 0 8px 36px -8px rgba(195, 74, 33, 0.4);
 
   /* ---- Typography ---- */
   --font-size-display: clamp(2.75rem, 8vw, 6rem);

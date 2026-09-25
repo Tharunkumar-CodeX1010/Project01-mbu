@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { MotionConfig } from "framer-motion";
 import { siteConfig } from "@/config/site";
 import { Footer } from "@/components/navigation/footer";
 import { Header } from "@/components/navigation/header";
@@ -34,13 +33,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased bg-canvas`}
     >
       <body className="bg-canvas flex min-h-full flex-col text-ink">
-        <MotionConfig reducedMotion="user">
-          <ToastProvider>
-            <Header />
-            <div className="flex flex-1 flex-col">{children}</div>
-            <Footer />
-          </ToastProvider>
-        </MotionConfig>
+        <ToastProvider>
+          <Header />
+          <div className="flex flex-1 flex-col">{children}</div>
+          <Footer />
+        </ToastProvider>
       </body>
     </html>
   );

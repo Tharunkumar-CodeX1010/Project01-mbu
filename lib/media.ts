@@ -10,6 +10,8 @@
  * module as the single point where real media may later attach.
  */
 
+import { posterForRecipe } from "@/lib/poster";
+
 export interface EpisodeMedia {
   recipeSlug: string;
   videoStatus: "blocked-external";
@@ -20,7 +22,6 @@ export interface EpisodeMedia {
   caption: string;
 }
 
-const DEFAULT_POSTER = "/media/poster-history.svg";
 const COOK_LOOP_MINUTES = 6;
 
 export function mediaFor(recipeSlug: string, cookMinutes = 30): EpisodeMedia {
@@ -29,7 +30,7 @@ export function mediaFor(recipeSlug: string, cookMinutes = 30): EpisodeMedia {
     videoStatus: "blocked-external",
     posterStatus: "procedural",
     videoSrc: null,
-    posterSrc: DEFAULT_POSTER,
+    posterSrc: posterForRecipe(recipeSlug),
     durationSeconds: Math.max(60, cookMinutes) * 60 + COOK_LOOP_MINUTES * 60,
     caption:
       "Procedural poster (SVG, generated in-repo). Video source is BLOCKED_EXTERNAL_DEPENDENCY until authorized media is configured.",

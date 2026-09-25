@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { BackButton } from "@/components/navigation/back-button";
 import { PageIntro } from "@/components/shared/page-intro";
-import { Reveal } from "@/components/motion/reveal";
 import { ConstellationMap } from "@/components/region/constellation-map";
 import { RegionCard } from "@/components/region/region-card";
+import { PosterImage } from "@/components/media/poster-image";
 import { VEINS, regionsByVein } from "@/config/regions";
+import { posterForVein } from "@/lib/poster";
 
 export const metadata: Metadata = { title: "Explore" };
 
@@ -22,37 +23,38 @@ export default function ExplorePage() {
         description="Sixteen cities where food became identity. Enter a region to read its story — origin, transformation, recognition."
       />
       <section aria-label="Region atlas" className="mt-8">
-        <Reveal>
-          <ConstellationMap />
-        </Reveal>
+        <ConstellationMap />
       </section>
-      <div className="mt-14 space-y-12">
+      <div className="mt-14 space-y-14">
         {VEINS.map((vein) => {
           const regions = regionsForVein(vein.slug);
           if (regions.length === 0) return null;
           return (
             <section key={vein.slug} aria-labelledby={`vein-${vein.slug}`}>
-              <Reveal>
-                <div className="mb-5">
-                  <h2
-                    id={`vein-${vein.slug}`}
-                    className="text-ink text-2xl font-bold tracking-tight"
-                  >
+              <div className="relative mb-6 aspect-[21/9] w-full overflow-hidden rounded-2xl border border-edge shadow-card sm:aspect-[3/1]">
+                <PosterImage
+                  src={posterForVein(vein.slug)}
+                  alt={`Vein poster of ${vein.name}`}
+                />
+                <div className="from-canvas/90 absolute inset-0 bg-gradient-to-r to-transparent" />
+                <div
+                  id={`vein-${vein.slug}`}
+                  className="absolute inset-y-0 flex max-w-xl flex-col justify-center px-6 sm:px-10"
+                >
+                  <p className="text-accent text-xs font-semibold uppercase tracking-[0.25em]">
+                    {vein.archetype}
+                  </p>
+                  <h2 className="text-ink mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
                     {vein.name}
                   </h2>
-                  <p className="text-ink-soft mt-1 text-sm">
-                    <span className="text-accent font-semibold">
-                      {vein.archetype}
-                    </span>{" "}
-                    — {vein.oneLiner}
+                  <p className="text-ink-soft mt-1 text-sm sm:text-base">
+                    {vein.oneLiner}
                   </p>
                 </div>
-              </Reveal>
-              <div className="grid gap-4 sm:grid-cols-2">
-                {regions.map((region, index) => (
-                  <Reveal key={region.slug} delay={index * 0.05}>
-                    <RegionCard region={region} />
-                  </Reveal>
+              </div>
+              <div className="grid gap-5 sm:grid-cols-2">
+                {regions.map((region) => (
+                  <RegionCard key={region.slug} region={region} />
                 ))}
               </div>
             </section>

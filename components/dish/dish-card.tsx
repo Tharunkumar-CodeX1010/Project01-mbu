@@ -1,19 +1,26 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui";
-import { MotionCard } from "@/components/motion/motion-card";
 import type { Dish } from "@/lib/dishes";
+import { posterForRecipe } from "@/lib/poster";
+import { PosterImage } from "@/components/media/poster-image";
 
 export function DishCard({ dish }: { dish: Dish }) {
   return (
-    <MotionCard className="h-full">
-      <Link
-        href={`/recipes/${dish.slug}`}
-        className="border-edge bg-surface shadow-glass group flex h-full flex-col rounded-lg p-4 transition-colors hover:bg-surface-strong"
-      >
-        <p className="text-accent text-[0.65rem] font-medium uppercase tracking-[0.25em]">
+    <Link
+      href={`/recipes/${dish.slug}`}
+      className="border-edge bg-surface shadow-card group flex h-full flex-col overflow-hidden rounded-xl transition-shadow hover:shadow-elevated focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+    >
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
+        <PosterImage
+          src={posterForRecipe(dish.slug)}
+          alt={`Dish poster for ${dish.name}`}
+        />
+        <span className="bg-elevated/90 absolute left-3 top-3 rounded-full px-2.5 py-0.5 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-ink-soft backdrop-blur-sm">
           {dish.archetype || dish.region}
-        </p>
-        <h3 className="text-ink mt-1.5 text-base font-semibold tracking-tight">
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col p-4">
+        <h3 className="text-ink text-base font-semibold tracking-tight">
           {dish.name}
         </h3>
         <p className="text-ink-soft mt-1.5 line-clamp-2 flex-1 text-sm leading-relaxed">
@@ -28,7 +35,7 @@ export function DishCard({ dish }: { dish: Dish }) {
             →
           </span>
         </div>
-      </Link>
-    </MotionCard>
+      </div>
+    </Link>
   );
 }

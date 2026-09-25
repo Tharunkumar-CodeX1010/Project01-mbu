@@ -84,7 +84,7 @@
     color: var(--text-on-accent);
   }
 
-  /* Accessibility color usage: accent-green is dark-surface-only */
+  /* Accessibility color usage: sage green reads on light ("Honey & Sage") */
   .text-green-on-light {
     color: var(--accent-green);
   }

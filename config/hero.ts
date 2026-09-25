@@ -22,7 +22,7 @@ export const heroFallback: HeroContentItem = {
   description:
     "Flour, tomatoes, mozzarella and patience. A masterclass in how one city's dish became the world's language of comfort — told step by step.",
   video: null,
-  poster: "/media/poster-naples.svg",
+  poster: "/media/poster-mediterranean.svg",
   recipeHref: "/recipes/pizza-napoletana",
   recipeLabel: "View recipe",
   exploreHref: "/explore",
