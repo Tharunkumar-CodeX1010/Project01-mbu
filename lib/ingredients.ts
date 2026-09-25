@@ -151,7 +151,7 @@ export const INGREDIENTS: Ingredient[] = [
     goesWith: ["scotch bonnet", "tomato", "rice"],
   },
   {
-    slug: "02c-corner-flour",
+    slug: "00-flour",
     name: "00 flour",
     family: "Grain",
     flavor: "Neutral, fine, silky",
