@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site";
 import { Footer } from "@/components/navigation/footer";
 import { Header } from "@/components/navigation/header";
+import { LocationGate } from "@/components/location/location-gate";
 import { ToastProvider } from "@/components/ui";
 import "./globals.css";
 
@@ -37,6 +38,7 @@ export default function RootLayout({
           <Header />
           <div className="flex flex-1 flex-col">{children}</div>
           <Footer />
+          <LocationGate />
         </ToastProvider>
       </body>
     </html>

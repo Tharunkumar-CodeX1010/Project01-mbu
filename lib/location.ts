@@ -1,7 +1,123 @@
 /** Location & time intelligence.
  *
- * No GPS / geocoding (BLOCKED_EXTERNAL_DEPENDENCY). We use only the device's
- * local time + IANA timezone — an honest, privacy-friendly heuristic. */
+ * Default mode is a privacy-friendly heuristic: the device's local time +
+ * IANA timezone, with no GPS contact.
+ *
+ * Device mode is optional and permission-gated: the user explicitly chooses
+ * "use my device location", the browser shows the permission prompt, and only
+ * after approval do we read coordinates and map them to the nearest region
+ * in the atlas. Denied/timeout/unsupported all degrade back to manual or
+ * timezone heuristics. Nothing is ever phone-home; coords (if granted) are
+ * stored locally in the user's own browser only.
+ */
+
+import { REGIONS, getRegion } from "@/config/regions";
+
+/** User's resolved place on the platform. */
+export type LocationSelection =
+  | {
+      mode: "manual" | "device";
+      regionSlug: string;
+      latitude?: number;
+      longitude?: number;
+      updatedAt: string;
+    }
+  | {
+      mode: "none";
+      regionSlug: null;
+      updatedAt: string;
+    };
+
+export type LocationState = LocationSelection | null;
+
+export const LOCATION_KEY = "tac.location.v1";
+
+/* ---- Geo matching (haversine over the 16 atlas cities) ---- */
+
+const EARTH_RADIUS_KM = 6371;
+
+function toRadians(deg: number): number {
+  return (deg * Math.PI) / 180;
+}
+
+export function distanceKm(
+  latA: number,
+  lngA: number,
+  latB: number,
+  lngB: number
+): number {
+  const dLat = toRadians(latB - latA);
+  const dLng = toRadians(lngB - lngA);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRadians(latA)) *
+      Math.cos(toRadians(latB)) *
+      Math.sin(dLng / 2) ** 2;
+  return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(a));
+}
+
+/** Nearest atlas region slug for a lat/lng point (deterministic). */
+export function nearestRegion(lat: number, lng: number): string {
+  let best = REGIONS[0];
+  let bestKm = Infinity;
+  for (const region of REGIONS) {
+    const km = distanceKm(lat, lng, region.geo.lat, region.geo.lng);
+    if (km < bestKm) {
+      bestKm = km;
+      best = region;
+    }
+  }
+  return best.slug;
+}
+
+/* ---- Persistence ---- */
+
+export function readLocation(): LocationState {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(LOCATION_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as LocationSelection;
+    if (parsed.mode !== "none") {
+      if (typeof parsed.regionSlug !== "string") return null;
+      if (parsed.mode !== "manual" && parsed.mode !== "device") return null;
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+export function writeLocation(state: LocationState) {
+  try {
+    if (state === null) {
+      window.localStorage.removeItem(LOCATION_KEY);
+    } else {
+      window.localStorage.setItem(LOCATION_KEY, JSON.stringify(state));
+    }
+  } catch {
+    // memory-only until refresh
+  }
+}
+
+export function locationLabel(state: LocationState): string {
+  if (!state || state.regionSlug === null) return "Set location";
+  const region = getRegion(state.regionSlug);
+  return region ? `${region.name}, ${region.country}` : state.regionSlug;
+}
+
+export function locationShortLabel(state: LocationState): string {
+  if (!state || state.regionSlug === null) return "Set location";
+  return getRegion(state.regionSlug)?.name ?? state.regionSlug;
+}
+
+export function isLocationChosen(state: LocationState): state is Extract<
+  LocationSelection,
+  { regionSlug: string }
+> {
+  return state !== null && state.regionSlug !== null;
+}
+
 export interface MomentContext {
   timezone: string;
   localHour: number;

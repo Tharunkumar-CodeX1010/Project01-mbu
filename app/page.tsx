@@ -1,5 +1,6 @@
 import { heroFallback } from "@/config/hero";
 import { CinematicHero } from "@/components/hero/cinematic-hero";
+import { LocalBand } from "@/components/location/local-band";
 import { VEINS } from "@/config/regions";
 import { posterForVein } from "@/lib/poster";
 import { PosterImage } from "@/components/media/poster-image";
@@ -19,6 +20,8 @@ export default function Home() {
   return (
     <main className="flex flex-1 flex-col">
       <CinematicHero item={heroFallback} />
+
+      <LocalBand />
 
       <section className="border-t border-edge bg-elevated/50">
         <div className="mx-auto flex max-w-[var(--container-max)] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 py-6 sm:px-6">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { primaryNav, siteConfig } from "@/config/site";
 import { NavLink } from "./nav-link";
 import { MobileNav } from "./mobile-nav";
+import { LocationChip } from "@/components/location/location-chip";
 
 export function Header() {
   return (
@@ -25,7 +26,10 @@ export function Header() {
           ))}
         </nav>
 
-        <MobileNav />
+        <div className="flex items-center gap-2">
+          <LocationChip />
+          <MobileNav />
+        </div>
       </div>
     </header>
   );
