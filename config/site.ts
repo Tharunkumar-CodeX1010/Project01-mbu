@@ -25,4 +25,5 @@ export const utilityNav = [
   { label: "Shopping List", href: "/shopping" },
   { label: "Unit & Swap", href: "/tools" },
   { label: "Ingredient Library", href: "/ingredients" },
+  { label: "Meal Planner", href: "/planner" },
 ] as const;

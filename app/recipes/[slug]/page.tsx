@@ -7,6 +7,7 @@ import { getRecipe, allRecipeSlugs } from "@/config/recipes";
 import { getRegion } from "@/config/regions";
 import { AddToShoppingButton } from "@/components/shopping/add-to-shopping-button";
 import { FavoriteButton } from "@/components/collection/favorite-button";
+import { EpisodeCard } from "@/components/media/episode-card";
 
 interface RecipeSlugPageProps {
   params: Promise<{ slug: string }>;
@@ -140,6 +141,9 @@ export default async function RecipeSlugPage({ params }: RecipeSlugPageProps) {
                   From {region.name} — regional atlas
                 </Button>
               ) : null}
+            </div>
+            <div className="mt-5">
+              <EpisodeCard recipeSlug={recipe.slug} cookMinutes={recipe.timeMin} />
             </div>
           </aside>
         </Reveal>
