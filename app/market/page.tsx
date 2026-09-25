@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BackButton } from "@/components/navigation/back-button";
-import { ScaffoldNote } from "@/components/shared/scaffold-note";
 import { PageIntro } from "@/components/shared/page-intro";
+import { MarketplaceSimulator } from "@/components/market/marketplace-simulator";
 
 export const metadata: Metadata = { title: "Market" };
 
@@ -12,9 +12,11 @@ export default function MarketPage() {
       <PageIntro
         overline="Shop"
         title="Market"
-        description="Ingredient search, product matching, price matrix and split-cart optimization across providers."
+        description="Ingredient search, product matching, price matrix and split-cart optimization across providers. Checkout connects externally."
       />
-      <ScaffoldNote section={20} title="Marketplace Architecture" />
+      <div className="mt-8">
+        <MarketplaceSimulator />
+      </div>
     </main>
   );
 }

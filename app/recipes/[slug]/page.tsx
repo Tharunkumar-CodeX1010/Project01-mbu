@@ -5,6 +5,8 @@ import { Button, Badge } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
 import { getRecipe, allRecipeSlugs } from "@/config/recipes";
 import { getRegion } from "@/config/regions";
+import { relatedRecipes } from "@/lib/ranking";
+import { RecipeCard } from "@/components/recipe/recipe-card";
 import { AddToShoppingButton } from "@/components/shopping/add-to-shopping-button";
 import { FavoriteButton } from "@/components/collection/favorite-button";
 import { EpisodeCard } from "@/components/media/episode-card";
@@ -34,6 +36,7 @@ export default async function RecipeSlugPage({ params }: RecipeSlugPageProps) {
   if (!recipe) notFound();
 
   const region = getRegion(recipe.regionSlug);
+  const related = relatedRecipes(recipe.slug, 3);
 
   return (
     <main className="mx-auto w-full max-w-[var(--container-max)] flex-1 px-4 py-10 sm:px-6">
@@ -148,6 +151,22 @@ export default async function RecipeSlugPage({ params }: RecipeSlugPageProps) {
           </aside>
         </Reveal>
       </div>
+
+      {related.length > 0 ? (
+        <section aria-label="Cooked alongside" className="mt-14">
+          <h2 className="text-ink text-xl font-semibold tracking-tight">
+            Pairs well
+          </h2>
+          <p className="text-ink-faint mt-1 text-sm">
+            Recipes sharing ingredients with {recipe.name}.
+          </p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((item) => (
+              <RecipeCard key={item.slug} recipe={item} />
+            ))}
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }
