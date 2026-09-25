@@ -7,9 +7,11 @@ import { getRecipe, allRecipeSlugs } from "@/config/recipes";
 import { getRegion } from "@/config/regions";
 import { relatedRecipes } from "@/lib/ranking";
 import { RecipeCard } from "@/components/recipe/recipe-card";
+import { EpisodeCard } from "@/components/media/episode-card";
+import { AutoplayRail } from "@/components/media/autoplay-rail";
+import { TranscriptCard } from "@/components/media/transcript-card";
 import { AddToShoppingButton } from "@/components/shopping/add-to-shopping-button";
 import { FavoriteButton } from "@/components/collection/favorite-button";
-import { EpisodeCard } from "@/components/media/episode-card";
 
 interface RecipeSlugPageProps {
   params: Promise<{ slug: string }>;
@@ -114,6 +116,10 @@ export default async function RecipeSlugPage({ params }: RecipeSlugPageProps) {
               ))}
             </ul>
           </section>
+
+          <div className="mt-10">
+            <TranscriptCard slug={recipe.slug} />
+          </div>
         </div>
 
         <Reveal delay={0.1} className="lg:sticky lg:top-24 lg:self-start">
@@ -167,6 +173,8 @@ export default async function RecipeSlugPage({ params }: RecipeSlugPageProps) {
           </div>
         </section>
       ) : null}
+
+      <AutoplayRail recipeSlugs={related.map((item) => item.slug)} />
     </main>
   );
 }
