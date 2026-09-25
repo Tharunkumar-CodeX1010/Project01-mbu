@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BackButton } from "@/components/navigation/back-button";
-import { ScaffoldNote } from "@/components/shared/scaffold-note";
 import { PageIntro } from "@/components/shared/page-intro";
+import { CulinaryArtHub } from "@/components/culinary/culinary-art-hub";
 
 export const metadata: Metadata = { title: "Culinary Art" };
 
@@ -12,9 +12,11 @@ export default function CulinaryArtPage() {
       <PageIntro
         overline="Craft"
         title="Culinary Art"
-        description="Knife skills, plating, flavor, texture, sauces, fermentation, baking and gastronomy."
+        description="Technique, not just recipes. Knife, fire, sauce, fermentation, baking and plating — each linked to a live masterclass to practice in."
       />
-      <ScaffoldNote section={17} title="Culinary Art Hub" />
+      <div className="mt-8">
+        <CulinaryArtHub />
+      </div>
     </main>
   );
 }
