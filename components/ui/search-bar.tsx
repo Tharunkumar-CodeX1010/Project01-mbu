@@ -7,6 +7,9 @@ interface SearchBarProps {
   label?: string;
   placeholder?: string;
   defaultValue?: string;
+  /** Controlled value; when provided, the input is driven by `onChange`. */
+  value?: string;
+  onChange?: (value: string) => void;
   autoFocus?: boolean;
   className?: string;
   onSearch: (query: string) => void;
@@ -16,17 +19,28 @@ export function SearchBar({
   label = "Search",
   placeholder = "Search...",
   defaultValue = "",
+  value,
+  onChange,
   autoFocus = false,
   className,
   onSearch,
 }: SearchBarProps) {
   const autoId = useId();
   const inputId = autoId;
-  const [value, setValue] = useState(defaultValue);
+  const [internal, setInternal] = useState(defaultValue);
+
+  const inputValue = value !== undefined ? value : internal;
+  const update = (next: string) => {
+    if (value !== undefined) {
+      onChange?.(next);
+    } else {
+      setInternal(next);
+    }
+  };
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
-    onSearch(value.trim());
+    onSearch(inputValue.trim());
   };
 
   return (
@@ -43,16 +57,16 @@ export function SearchBar({
         type="search"
         autoFocus={autoFocus}
         placeholder={placeholder}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={inputValue}
+        onChange={(e) => update(e.target.value)}
         className="h-12 w-full flex-1 rounded-lg border border-edge bg-surface px-4 text-base text-ink shadow-glass backdrop-blur-md placeholder:text-ink-faint focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
       />
-      {value ? (
+      {inputValue ? (
         <button
           type="button"
           aria-label="Clear search"
           onClick={() => {
-            setValue("");
+            update("");
             onSearch("");
           }}
           className="text-ink-faint hover:text-ink"

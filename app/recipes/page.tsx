@@ -1,20 +1,35 @@
 import type { Metadata } from "next";
 import { BackButton } from "@/components/navigation/back-button";
-import { ScaffoldNote } from "@/components/shared/scaffold-note";
 import { PageIntro } from "@/components/shared/page-intro";
+import { RecipesBrowser } from "@/components/recipe/recipes-browser";
+import { RECIPES } from "@/config/recipes";
+import { REGIONS } from "@/config/regions";
 
 export const metadata: Metadata = { title: "Recipes" };
 
-export default function RecipesPage() {
+interface RecipesPageProps {
+  searchParams: Promise<{ region?: string }>;
+}
+
+export default async function RecipesPage({ searchParams }: RecipesPageProps) {
+  const params = await searchParams;
+  const region = REGIONS.find((r) => r.slug === params.region);
+
   return (
     <main className="mx-auto w-full max-w-[var(--container-max)] flex-1 px-4 py-10 sm:px-6">
       <BackButton fallbackHref="/" />
       <PageIntro
         overline="Masterclass"
-        title="Recipes"
-        description="Data-driven cooking masterclasses — story, technique, steps, video and related dishes."
+        title="Recipe Index"
+        description="Sixteen masterclasses drawn from regions across the eight culinary veins — each with story, ingredients, technique and honest notes."
       />
-      <ScaffoldNote section={10} title="Recipe Masterclass Engine" />
+      <div className="mt-8">
+        <RecipesBrowser
+          recipes={RECIPES}
+          regions={REGIONS.map((r) => ({ slug: r.slug, name: r.name }))}
+          initialRegion={region?.slug}
+        />
+      </div>
     </main>
   );
 }
