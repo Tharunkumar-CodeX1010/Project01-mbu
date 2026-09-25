@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { BackButton } from "@/components/navigation/back-button";
-import { ScaffoldNote } from "@/components/shared/scaffold-note";
+import { Reveal } from "@/components/motion/reveal";
 import { PageIntro } from "@/components/shared/page-intro";
+import { BackButton } from "@/components/navigation/back-button";
+import { HistoryFilmCard } from "@/components/history/history-film-card";
+import { HISTORY_FILMS } from "@/lib/history";
 
 export const metadata: Metadata = { title: "Food History" };
 
@@ -11,10 +13,16 @@ export default function HistoryPage() {
       <BackButton fallbackHref="/" />
       <PageIntro
         overline="Story"
-        title="Food History"
-        description="Origins, timelines, regional evolution and cultural context — with evidence marked, never invented."
+        title="Food History Films"
+        description="Short archival episodes about how dishes became history. Video is mocked in this build — scenes and provenance are the record."
       />
-      <ScaffoldNote section={15} title="Food History Engine" />
+      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {HISTORY_FILMS.map((film, index) => (
+          <Reveal key={film.slug} delay={index * 0.04}>
+            <HistoryFilmCard film={film} />
+          </Reveal>
+        ))}
+      </div>
     </main>
   );
 }
