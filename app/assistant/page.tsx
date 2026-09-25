@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { BackButton } from "@/components/navigation/back-button";
-import { ScaffoldNote } from "@/components/shared/scaffold-note";
 import { PageIntro } from "@/components/shared/page-intro";
+import { AssistantPanel } from "@/components/assistant/assistant-panel";
+import { TodayContext } from "@/components/intel/today-context";
 
 export const metadata: Metadata = { title: "AI Assistant" };
 
@@ -12,9 +13,12 @@ export default function AssistantPage() {
       <PageIntro
         overline="Intelligence"
         title="AI Assistant"
-        description="A site-bound culinary copilot that understands the page, the recipe, your kitchen and food history."
+        description="A site-bound culinary copilot that answers from this build's own data — recipes, regions, films and technique."
       />
-      <ScaffoldNote section={25} title="YUMMYGO AI Assistant" />
+      <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+        <AssistantPanel />
+        <TodayContext />
+      </div>
     </main>
   );
 }
