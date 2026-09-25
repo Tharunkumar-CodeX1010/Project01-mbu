@@ -1,5 +1,6 @@
 import { heroFallback } from "@/config/hero";
 import { CinematicHero } from "@/components/hero/cinematic-hero";
+import { Reveal } from "@/components/motion/reveal";
 
 const journey = [
   "Discover",
@@ -19,7 +20,7 @@ export default function Home() {
       <section className="border-t border-edge bg-elevated/40">
         <div className="mx-auto flex max-w-[var(--container-max)] flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 py-6 sm:px-6">
           {journey.map((step, index) => (
-            <span key={step} className="flex items-center gap-2">
+            <Reveal key={step} delay={index * 0.06} className="flex items-center gap-2">
               <span className="text-accent text-xs font-semibold">
                 {String(index + 1).padStart(2, "0")}
               </span>
@@ -29,7 +30,7 @@ export default function Home() {
                   →
                 </span>
               ) : null}
-            </span>
+            </Reveal>
           ))}
         </div>
       </section>
