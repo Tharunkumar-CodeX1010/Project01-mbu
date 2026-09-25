@@ -5,6 +5,7 @@ import { Button, Badge } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
 import { getRecipe, allRecipeSlugs } from "@/config/recipes";
 import { getRegion } from "@/config/regions";
+import { AddToShoppingButton } from "@/components/shopping/add-to-shopping-button";
 
 interface RecipeSlugPageProps {
   params: Promise<{ slug: string }>;
@@ -130,13 +131,14 @@ export default async function RecipeSlugPage({ params }: RecipeSlugPageProps) {
                 </li>
               ))}
             </ul>
-            {region ? (
-              <div className="mt-4">
-                <Button href={`/explore/${region.slug}`} variant="glass" className="w-full">
+            <div className="mt-4 space-y-3">
+              <AddToShoppingButton slug={recipe.slug} />
+              {region ? (
+                <Button href={`/explore/${region.slug}`} variant="ghost" className="w-full">
                   From {region.name} — regional atlas
                 </Button>
-              </div>
-            ) : null}
+              ) : null}
+            </div>
           </aside>
         </Reveal>
       </div>

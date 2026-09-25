@@ -12,6 +12,7 @@ export const primaryNav = [
   { label: "Home", href: "/" },
   { label: "Explore", href: "/explore" },
   { label: "Recipes", href: "/recipes" },
+  { label: "Dishes", href: "/dishes" },
   { label: "Food History", href: "/history" },
   { label: "Culinary Art", href: "/culinary-art" },
   { label: "Market", href: "/market" },
