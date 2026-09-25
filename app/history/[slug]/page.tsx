@@ -6,6 +6,7 @@ import { getFilm, HISTORY_FILMS } from "@/lib/history";
 import { getRegion } from "@/config/regions";
 import { getRecipe } from "@/config/recipes";
 import { posterForRegion } from "@/lib/poster";
+import { foodImageForFilm } from "@/lib/food-images";
 import { PosterImage } from "@/components/media/poster-image";
 
 interface HistoryFilmPageProps {
@@ -38,7 +39,8 @@ export default async function HistoryFilmPage({ params }: HistoryFilmPageProps) 
       <div className="relative isolate overflow-hidden rounded-2xl border border-edge shadow-card">
         <div className="absolute inset-0">
           <PosterImage
-            src={posterForRegion(film.regions[0])}
+            src={foodImageForFilm(film.slug) ?? posterForRegion(film.regions[0])}
+            fallback={posterForRegion(film.regions[0])}
             alt={`Poster of ${film.title}`}
             priority
           />

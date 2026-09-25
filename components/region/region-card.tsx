@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui";
 import { getVein } from "@/config/regions";
 import type { Region } from "@/config/regions";
 import { posterForRegion } from "@/lib/poster";
+import { foodImageForRegion } from "@/lib/food-images";
 import { PosterImage } from "@/components/media/poster-image";
 
 export function RegionCard({ region }: { region: Region }) {
@@ -15,7 +16,8 @@ export function RegionCard({ region }: { region: Region }) {
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <PosterImage
-          src={posterForRegion(region.slug)}
+          src={foodImageForRegion(region.slug) ?? posterForRegion(region.slug)}
+          fallback={posterForRegion(region.slug)}
           alt={`Regional poster of ${region.name}`}
         />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-canvas/90 to-transparent p-4 pt-10">

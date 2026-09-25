@@ -35,8 +35,12 @@ honor the `?region=` deep link.
 - No heavy runtime data: recipe/region/history/ingredient data is compiled into
   the build (static). Live postgres/Redis/YouTube/grocery calls remain
   `BLOCKED_EXTERNAL_DEPENDENCY` and are not part of page rendering.
-- Procedural SVG posters rather than photo downloads keep first paint light and
-  avoid third-party asset latency.
+- Named-dish/region/vein/film imagery is real photography (Wikimedia Commons,
+  free-licensed, hotlinked) with `loading="lazy"` and a procedural in-repo SVG
+  fallback if the photo fails offline. Recipe-making-step posters stay
+  procedural SVG so the cooking imagery is never network-dependent. The `<img>`
+  tags carry `referrerPolicy="no-referrer"`; no third-party JS or fonts are
+  loaded, so first paint stays light while hero/priority images load eagerly.
 
 ## Re-measure command
 ```

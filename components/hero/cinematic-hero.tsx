@@ -1,6 +1,7 @@
 import type { HeroContentItem } from "@/config/hero";
 import { Button } from "@/components/ui";
 import { siteConfig } from "@/config/site";
+import { posterForVein } from "@/lib/poster";
 import { PosterImage } from "@/components/media/poster-image";
 
 export function CinematicHero({ item }: { item: HeroContentItem }) {
@@ -12,7 +13,8 @@ export function CinematicHero({ item }: { item: HeroContentItem }) {
       <div className="absolute inset-0">
         <PosterImage
           src={item.poster}
-          alt={`Freshly-told poster of ${item.title}`}
+          fallback={posterForVein("mediterranean")}
+          alt={`Photograph of ${item.title}`}
           priority
         />
       </div>

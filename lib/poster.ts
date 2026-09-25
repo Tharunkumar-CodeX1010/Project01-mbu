@@ -2,9 +2,10 @@ import { getRegion, type VeinSlug } from "@/config/regions";
 import { getRecipe } from "@/config/recipes";
 
 /**
- * Procedural poster assigner. Every poster is self-contained SVG (no external
- * CSS vars), produced in-repo — imagery that always renders, with no photo or
- * licensing dependency.
+ * Procedural poster assigner — the self-contained fallback for every image
+ * slot. Each poster is in-repo SVG (no external CSS vars), so imagery still
+ * renders offline or when a remote photo fails. Named dishes/regions/veins/
+ * films first try real photos via lib/food-images.ts.
  */
 
 const POSTER_BY_VEIN: Record<VeinSlug, string> = {

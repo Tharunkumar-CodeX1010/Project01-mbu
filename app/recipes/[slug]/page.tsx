@@ -10,7 +10,8 @@ import { EpisodeCard } from "@/components/media/episode-card";
 import { TranscriptCard } from "@/components/media/transcript-card";
 import { AddToShoppingButton } from "@/components/shopping/add-to-shopping-button";
 import { FavoriteButton } from "@/components/collection/favorite-button";
-import { posterForRegion } from "@/lib/poster";
+import { posterForRecipe } from "@/lib/poster";
+import { foodImageForRecipe } from "@/lib/food-images";
 import { PosterImage } from "@/components/media/poster-image";
 
 interface RecipeSlugPageProps {
@@ -46,7 +47,8 @@ export default async function RecipeSlugPage({ params }: RecipeSlugPageProps) {
 
       <div className="relative mb-10 aspect-[21/8] w-full overflow-hidden rounded-2xl border border-edge shadow-card">
         <PosterImage
-          src={posterForRegion(recipe.regionSlug)}
+          src={foodImageForRecipe(recipe.slug) ?? posterForRecipe(recipe.slug)}
+          fallback={posterForRecipe(recipe.slug)}
           alt={`Poster of ${recipe.name}`}
           priority
         />

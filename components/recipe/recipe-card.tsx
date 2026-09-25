@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Badge } from "@/components/ui";
 import { getRegion } from "@/config/regions";
 import type { Recipe } from "@/config/recipes";
-import { posterForRegion } from "@/lib/poster";
+import { posterForRecipe } from "@/lib/poster";
+import { foodImageForRecipe } from "@/lib/food-images";
 import { PosterImage } from "@/components/media/poster-image";
 
 export function RecipeCard({ recipe }: { recipe: Recipe }) {
@@ -15,7 +16,8 @@ export function RecipeCard({ recipe }: { recipe: Recipe }) {
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <PosterImage
-          src={posterForRegion(recipe.regionSlug)}
+          src={foodImageForRecipe(recipe.slug) ?? posterForRecipe(recipe.slug)}
+          fallback={posterForRecipe(recipe.slug)}
           alt={`Masterclass poster for ${recipe.name}`}
         />
         <span className="bg-accent/90 text-accent-ink absolute left-3 top-3 rounded-full px-2.5 py-0.5 text-xs font-semibold">

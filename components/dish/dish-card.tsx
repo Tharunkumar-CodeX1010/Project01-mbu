@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui";
 import type { Dish } from "@/lib/dishes";
 import { posterForRecipe } from "@/lib/poster";
+import { foodImageForRecipe } from "@/lib/food-images";
 import { PosterImage } from "@/components/media/poster-image";
 
 export function DishCard({ dish }: { dish: Dish }) {
@@ -12,7 +13,8 @@ export function DishCard({ dish }: { dish: Dish }) {
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <PosterImage
-          src={posterForRecipe(dish.slug)}
+          src={foodImageForRecipe(dish.slug) ?? posterForRecipe(dish.slug)}
+          fallback={posterForRecipe(dish.slug)}
           alt={`Dish poster for ${dish.name}`}
         />
         <span className="bg-elevated/90 absolute left-3 top-3 rounded-full px-2.5 py-0.5 text-[0.7rem] font-medium uppercase tracking-[0.15em] text-ink-soft backdrop-blur-sm">

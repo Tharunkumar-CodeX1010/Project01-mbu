@@ -6,6 +6,7 @@ import { RegionCard } from "@/components/region/region-card";
 import { PosterImage } from "@/components/media/poster-image";
 import { VEINS, regionsByVein } from "@/config/regions";
 import { posterForVein } from "@/lib/poster";
+import { foodImageForVein } from "@/lib/food-images";
 
 export const metadata: Metadata = { title: "Explore" };
 
@@ -33,7 +34,8 @@ export default function ExplorePage() {
             <section key={vein.slug} aria-labelledby={`vein-${vein.slug}`}>
               <div className="relative mb-6 aspect-[21/9] w-full overflow-hidden rounded-2xl border border-edge shadow-card sm:aspect-[3/1]">
                 <PosterImage
-                  src={posterForVein(vein.slug)}
+                  src={foodImageForVein(vein.slug) ?? posterForVein(vein.slug)}
+                  fallback={posterForVein(vein.slug)}
                   alt={`Vein poster of ${vein.name}`}
                 />
                 <div className="from-canvas/90 absolute inset-0 bg-gradient-to-r to-transparent" />

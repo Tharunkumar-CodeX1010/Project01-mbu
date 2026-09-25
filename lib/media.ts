@@ -8,6 +8,11 @@
  *
  * The daily-refresh path (S29) and upload/training gates (S28/S29) treat this
  * module as the single point where real media may later attach.
+ *
+ * Imagery policy: named dishes/regions/veins/films use real photos
+ * (Wikimedia Commons via lib/food-images.ts) with a procedural SVG fallback.
+ * Recipe-making steps (this module's EpisodeCard) deliberately keep the
+ * procedural poster — the step-by-step cooking imagery stays generated.
  */
 
 import { posterForRecipe } from "@/lib/poster";
@@ -15,7 +20,7 @@ import { posterForRecipe } from "@/lib/poster";
 export interface EpisodeMedia {
   recipeSlug: string;
   videoStatus: "blocked-external";
-  posterStatus: "procedural";
+  posterStatus: "procedural" | "photo-with-svg-fallback";
   videoSrc: string | null;
   posterSrc: string;
   durationSeconds: number;
@@ -33,7 +38,7 @@ export function mediaFor(recipeSlug: string, cookMinutes = 30): EpisodeMedia {
     posterSrc: posterForRecipe(recipeSlug),
     durationSeconds: Math.max(60, cookMinutes) * 60 + COOK_LOOP_MINUTES * 60,
     caption:
-      "Procedural poster (SVG, generated in-repo). Video source is BLOCKED_EXTERNAL_DEPENDENCY until authorized media is configured.",
+      "Recipe-making imagery is a procedural SVG (generated in-repo): the step-by-step cooking poster stays generated. Named dishes, regions, veins and history films elsewhere on the site use verified real photos with an SVG fallback. Video source is BLOCKED_EXTERNAL_DEPENDENCY until authorized media is configured.",
   };
 }
 

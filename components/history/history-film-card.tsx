@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui";
 import { getRegion } from "@/config/regions";
 import type { HistoryFilm } from "@/lib/history";
 import { posterForRegion } from "@/lib/poster";
+import { foodImageForFilm } from "@/lib/food-images";
 import { PosterImage } from "@/components/media/poster-image";
 
 export function HistoryFilmCard({ film }: { film: HistoryFilm }) {
@@ -15,7 +16,8 @@ export function HistoryFilmCard({ film }: { film: HistoryFilm }) {
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <PosterImage
-          src={posterForRegion(primaryRegion)}
+          src={foodImageForFilm(film.slug) ?? posterForRegion(primaryRegion)}
+          fallback={posterForRegion(primaryRegion)}
           alt={`Film poster for ${film.title}`}
         />
         <span className="text-accent-ink bg-accent/90 absolute right-3 top-3 rounded-full px-2.5 py-0.5 text-xs font-semibold">

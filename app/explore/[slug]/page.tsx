@@ -6,6 +6,7 @@ import { RegionAtlas } from "@/components/region/region-atlas";
 import { PosterImage } from "@/components/media/poster-image";
 import { getRegion, getVein, REGIONS } from "@/config/regions";
 import { posterForRegion } from "@/lib/poster";
+import { foodImageForRegion } from "@/lib/food-images";
 
 interface RegionPageProps {
   params: Promise<{ slug: string }>;
@@ -44,7 +45,8 @@ export default async function RegionPage({ params }: RegionPageProps) {
 
       <div className="relative mb-10 aspect-[21/8] w-full overflow-hidden rounded-2xl border border-edge shadow-card">
         <PosterImage
-          src={posterForRegion(region.slug)}
+          src={foodImageForRegion(region.slug) ?? posterForRegion(region.slug)}
+          fallback={posterForRegion(region.slug)}
           alt={`Poster of ${region.name}`}
           priority
         />

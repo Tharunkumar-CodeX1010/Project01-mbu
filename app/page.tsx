@@ -3,6 +3,7 @@ import { CinematicHero } from "@/components/hero/cinematic-hero";
 import { LocalBand } from "@/components/location/local-band";
 import { VEINS } from "@/config/regions";
 import { posterForVein } from "@/lib/poster";
+import { foodImageForVein } from "@/lib/food-images";
 import { PosterImage } from "@/components/media/poster-image";
 
 const journey = [
@@ -64,7 +65,8 @@ export default function Home() {
             >
               <div className="relative aspect-[16/11] w-full overflow-hidden">
                 <PosterImage
-                  src={posterForVein(vein.slug)}
+                  src={foodImageForVein(vein.slug) ?? posterForVein(vein.slug)}
+                  fallback={posterForVein(vein.slug)}
                   alt={`Culinary poster of the ${vein.name}`}
                 />
               </div>

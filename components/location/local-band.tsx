@@ -5,6 +5,7 @@ import { getRegion, getVein } from "@/config/regions";
 import { isLocationChosen, locationShortLabel } from "@/lib/location";
 import { useLocation } from "./location-store";
 import { posterForRegion } from "@/lib/poster";
+import { foodImageForRegion } from "@/lib/food-images";
 import { PosterImage } from "@/components/media/poster-image";
 import { Button, Badge } from "@/components/ui";
 import { RecipeCard } from "@/components/recipe/recipe-card";
@@ -29,7 +30,8 @@ export function LocalBand() {
         <div className="grid items-center gap-6 lg:grid-cols-[1.05fr_1fr]">
           <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl border border-edge shadow-card">
             <PosterImage
-              src={posterForRegion(region.slug)}
+              src={foodImageForRegion(region.slug) ?? posterForRegion(region.slug)}
+              fallback={posterForRegion(region.slug)}
               alt={`Poster of ${region.name}`}
             />
             <span className="bg-elevated/90 absolute left-3 top-3 rounded-full px-2.5 py-0.5 text-xs font-medium text-ink-soft backdrop-blur-sm">
