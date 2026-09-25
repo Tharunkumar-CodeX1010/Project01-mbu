@@ -6,6 +6,7 @@ import { Reveal } from "@/components/motion/reveal";
 import { getRecipe, allRecipeSlugs } from "@/config/recipes";
 import { getRegion } from "@/config/regions";
 import { AddToShoppingButton } from "@/components/shopping/add-to-shopping-button";
+import { FavoriteButton } from "@/components/collection/favorite-button";
 
 interface RecipeSlugPageProps {
   params: Promise<{ slug: string }>;
@@ -132,6 +133,7 @@ export default async function RecipeSlugPage({ params }: RecipeSlugPageProps) {
               ))}
             </ul>
             <div className="mt-4 space-y-3">
+              <FavoriteButton slug={recipe.slug} />
               <AddToShoppingButton slug={recipe.slug} />
               {region ? (
                 <Button href={`/explore/${region.slug}`} variant="ghost" className="w-full">

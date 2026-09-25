@@ -19,3 +19,8 @@ export const primaryNav = [
   { label: "AI Assistant", href: "/assistant" },
   { label: "Kitchen", href: "/kitchen" },
 ] as const;
+
+export const utilityNav = [
+  { label: "Saved Dishes", href: "/saved" },
+  { label: "Shopping List", href: "/shopping" },
+] as const;

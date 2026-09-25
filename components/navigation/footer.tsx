@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { primaryNav, siteConfig } from "@/config/site";
+import { primaryNav, siteConfig, utilityNav } from "@/config/site";
 
 export function Footer() {
   return (
@@ -18,6 +18,16 @@ export function Footer() {
 
         <nav aria-label="Footer" className="flex flex-col gap-2">
           {primaryNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-ink-soft text-sm transition-colors hover:text-accent"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <span className="mt-2 block h-px bg-edge" />
+          {utilityNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
