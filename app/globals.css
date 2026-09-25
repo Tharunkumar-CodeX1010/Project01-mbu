@@ -22,6 +22,14 @@
   @keyframes tac-spin {
     to { transform: rotate(360deg); }
   }
+  @keyframes tac-breath {
+    0%, 100% { opacity: 0.75; }
+    50% { opacity: 1; }
+  }
+  @keyframes tac-pan {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.12); }
+  }
 
   .animate-tac-fade-in {
     animation: tac-fade-in var(--motion-duration-fast) ease-out both;
@@ -39,6 +47,9 @@
   }
   .animate-tac-spin {
     animation: tac-spin 0.8s linear infinite;
+  }
+  .animate-tac-breath {
+    animation: tac-breath 6s ease-in-out infinite;
   }
 
   /* Universal box-sizing */
