@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BackButton } from "@/components/navigation/back-button";
-import { ScaffoldNote } from "@/components/shared/scaffold-note";
 import { PageIntro } from "@/components/shared/page-intro";
+import { KitchenProfilePanel } from "@/components/kitchen/kitchen-profile-panel";
 
 export const metadata: Metadata = { title: "Kitchen" };
 
@@ -11,10 +11,12 @@ export default function KitchenPage() {
       <BackButton fallbackHref="/" />
       <PageIntro
         overline="Your Space"
-        title="Kitchen"
-        description="Your equipment, pantry, skill and household — the context that makes recipes yours."
+        title="Kitchen Profile"
+        description="Skill, equipment, pantry and household — the context that makes recipes yours. Saved locally in this browser."
       />
-      <ScaffoldNote section={13} title="Kitchen Profile" />
+      <div className="mt-8">
+        <KitchenProfilePanel />
+      </div>
     </main>
   );
 }
